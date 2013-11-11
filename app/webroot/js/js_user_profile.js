@@ -1,0 +1,12 @@
+$(document).ready(function(){		
+	$(".container").corner("15px");
+	$('a[@rel*=facebox]').facebox();	
+	$('#friends_show').click(function(){
+		$('#information').hide();
+		$('#friends').show();
+	});
+	$('#information_show').click(function(){
+		$('#friends').hide();
+		$('#information').show();
+	});
+});

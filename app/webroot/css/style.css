@@ -1,0 +1,424 @@
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11.5px;
+}
+a:link{
+	text-decoration: none;
+	color: #0B3861;
+	font-weight: bold;
+}
+a:visited{
+	text-decoration: none;
+	color: #0B3861;
+	font-weight: bold;
+}
+a:hover{
+	text-decoration: none;
+	color: blue;
+	font-weight: bold;
+}
+a.mini:link{
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: underline;
+	font-size: 11.5px;
+	font-weight: normal;
+}
+a.mini:visited{
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: underline;
+	font-size: 11.5px;
+	font-weight: normal;
+}
+a.mini:hover{
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: underline;
+	font-size: 11.5px;
+	color: blue;
+}
+div.selected_left_right_menu_item_container{
+	border: solid; 	
+	background-color: #DFF0F2; 
+	border-width: 1px;
+	border-color: #6E6E6E;
+	margin-top: 5px;
+	margin-left: 4px;
+	margin-right: 4px;
+	margin-bottom: 5px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+div.left_right_menu_item_container{
+	border: solid; 
+	background-color: #FFF; 
+	border-width: 1px;
+	border-color: #6E6E6E;
+	margin-top: 5px;
+	margin-left: 4px;
+	margin-right: 4px;
+	margin-bottom: 5px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+div.new_whisper_button{
+	margin-top: 5px; 
+	margin-left: 2px; 
+	margin-right: 2px; 
+}
+td.left_right_td_border{
+	border: solid;
+	width: 160px;
+	border-width: 1px;
+	border-color: #6E6E6E;
+}
+td.center_td_border{
+	border: solid;
+	width: 620px;
+	border-width: 1px;
+	border-color: #6E6E6E;
+	background-color: #DFF0F2;
+}
+div.right_menu_profile_summary_box{
+	border: solid;
+	border-width: 1px;
+	border-color: #6E6E6E;
+	width: 120px; 
+	margin-top: 5px; 
+	padding-top: 5px; 
+	padding-bottom: 5px; 
+	text-align: center;
+}
+div.new_whisper_box{
+	margin: 5px; 
+	padding: 10px; 
+	text-align: left; 
+	width: 580px;
+	border: solid;
+	border-width: 1px;
+	border-color: #6E6E6E;
+	background-color: #FFF;
+}
+div.profile_name{
+	margin-top: 2px;
+	text-align: center;
+}
+div.general_title{
+	font-weight: bold;
+	color: #6E6E6E;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+textarea.whisper_content_input{
+	resize: none;
+	width:575px;
+	max-height: 400px;
+	min-height: 50px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11.5px;
+}
+textarea.about_me_content_input{
+	resize: none;
+	width:320px;
+	max-height: 400px;
+	min-height: 50px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11.5px;
+}
+div.edit_intenal{
+	margin-top: 10px;
+	background-color: #E6E6E6;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-left: 12px;
+}
+textarea.comment_content_input{
+	resize: none;
+	width: 543px;
+	max-height: 100px;
+	min-height: 10px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11.5px;
+}
+div.box_containing_recipient_related{
+	border: solid;
+	border-width: 1px;
+	border-color: #6E6E6E;
+	padding: 5px; 
+	margin-bottom: 10px; 
+	padding-left: 10px; 
+	padding-right: 10px; 
+	text-align: left;
+	margin-top: 10px;
+}
+.mini_instructions{
+	color: #424242;
+}
+div.basic_info_values{
+	color: #424242;
+	margin-top: 6px;
+}
+div.profile_about_me{
+	color: #424242;
+	font-size: 11.5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #CCC;
+	margin-top: 5px;
+	margin-right: 10px;
+	padding: 10px;
+	min-height: 70px;
+	background-color: #F2F2F2;
+	margin-bottom: 10px;
+}
+input[type=text]{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11.5px;
+	width: 200px;
+	height: 15px;
+}
+input[type=radio]+label{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11.5px;
+	color: #424242;
+}
+select{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11.5px;
+	color: #424242;
+}
+div.whisper_submit_container{
+	text-align: right;
+	margin-top: 20px;
+}
+table#main{
+	width: 800px; 
+	height: 580px;
+}
+table#header{
+	width: 980px; 
+	margin-top:10px;
+}
+img{
+	border: none;
+}
+div.facebox_container{
+	border: solid;
+	border-width: 1px;
+	border-color: #6E6E6E;
+}
+div.search_friends_result_box{
+	padding: 3px;
+	padding-bottom: 3px; 
+	margin-top: 3px; 
+	margin-bottom: 3px; 
+	background-color: #FFF;
+}
+input.login_textbox{
+	width: 270px;
+	margin-left: 0px;
+}
+div.unread_item_in_whisper_list{
+	margin: 5px; 
+	padding: 4px; 
+	text-align: left; 
+	width: 593px;
+	border: solid;
+	border-width: 1px;
+	border-color: #6E6E6E;
+	background-color: #F7E8E8;
+}
+div.read_item_in_whisper_list{
+	margin: 5px;  
+	padding: 4px; 
+	text-align: left; 
+	width: 593px;
+	border: solid;
+	border-width: 1px;
+	border-color: #6E6E6E;
+	background-color: #FFF;
+}
+div.whisper_meta_info_container{
+	margin-top: 5px;
+	text-align: right;
+	color: #6E6E6E;
+}
+div.whisper_below_button_container{
+	margin-top: 5px;
+	text-align: right;
+	color: #6E6E6E;
+}
+div.comment_submit_container{
+	margin-top: 4px;
+	text-align: right;
+	color: #6E6E6E;
+}
+span.whisper_summary{
+	color: #6E6E6E;
+}
+span.time_display{
+	color: #6E6E6E;
+	font-size: 10px;
+	font-weight: bold;
+}
+div.whisper_target_display{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11.5px;
+	border: solid;
+	border-width: 1px;
+	border-color: #CCC;
+	padding: 8px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+div.whisper_contents_display{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11.5px;
+	border: solid;
+	border-width: 3px;
+	border-color: #9EAFD0;
+	padding: 8px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+div.comment_item_container{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11.5px;
+	border: solid;
+	border-width: 1px;
+	border-color: #CCC;
+	padding: 8px;
+	margin-left: 10px;
+	margin-bottom: 5px;
+	margin-right: 10px;
+	background-color: #E9E7E7;
+}
+div.input_comment_item_container{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11.5px;
+	border: solid;
+	border-width: 1px;
+	border-color: #CCC;
+	padding: 4px;
+	margin-top: 5px;
+	margin-left: 10px;
+	margin-bottom: 5px;
+	margin-right: 10px;
+	background-color: #E9E7E7;
+}
+div.comment_container{
+	margin-top: 15px;
+}
+div.comment_time_display{
+	margin-top: 5px;
+}
+input[type=submit]{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11.5px;
+	font-weight: bold;
+	width: 80px;
+	height: 25px;
+}
+div.profile_info_box{
+	width: 170px;
+	text-align:center;
+}
+div.basic_info_box{
+	text-align:center;
+	border: solid;
+	border-width: 1px;
+	border-color: #CCC;
+	margin-top: 20px;
+	padding: 5px;
+}
+div.profile_friend_box{
+	min-height: 520px;
+	border: solid;
+	border-width: 1px;
+	border-color: #CCC;
+	margin-left: 5px;
+	padding: 3px;
+	padding-left: 12px;
+}
+div.individual_basic_info{
+	text-align: left;
+	margin-bottom: 15px;	
+}
+div.individual_profile_icon_mini{
+	border: none;
+	width:50px; 
+	margin: 5px;
+	padding-top: 3px; 
+	padding-bottom: 3px; 
+	text-align: center;
+}
+div.individual_profile_icon{
+	border: none;
+	width:82px; 
+	margin: 5px;
+	padding-top: 3px; 
+	padding-bottom: 3px; 
+	text-align: center;
+}
+div.individual_profile_name{
+	font-size: 10px;
+}
+div.friends_container{	
+	background-color: #F2F2F2;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #CCC;
+	min-height: 375px;
+	margin-right: 10px;
+}
+div.profile_message{
+	background-color: #DDD;
+	margin-left: 5px;
+	margin-bottom: 10px;
+	padding: 2px;
+	text-align: center;
+}
+div.friends_page_box{
+	margin-left: 15px;
+	margin-right: 5px;
+	margin-top: 10px;
+}
+div.main_content_title_container{
+	text-align: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 13px;
+	font-weight: bold;
+	font-size: 13px;
+	color: #6E6E6E;
+}
+div.pagination_container{
+	//font-weight: bold;
+	text-align: right;
+	margin-top: 10px;
+	margin-right: 20px;
+}
+div.left_menu_subcontainer{
+	border:none; 
+	margin-top:10px; 
+	margin-bottom:20px; 
+	background-color:#FFF;
+}
+button{
+	font-weight: bold;
+	padding: 5px;
+}
+div.input_field_sep{
+	margin-left: 25px;
+	margin-bottom: 10px;
+}
+input[type=file]{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11.5px;
+}

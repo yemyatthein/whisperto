@@ -1,0 +1,187 @@
+<?
+class UsersController extends AppController{	
+	
+	var $name = 'Users';	
+	var $helpers = array('Js' => array('Jquery'));
+	var $components = array('RequestHandler');
+	
+	function profile($pid){
+		$current_user = $this->Auth->user();
+		$query = 'select * from users where id="'.$pid.'"';
+		$user_info = $this->User->query($query);
+		if(count($user_info)>0){
+			$query = 'select * from users_users as uu where uu.user_id_1="'.$current_user['User']['id'].'" and uu.user_id_2="'.$pid.'" ';
+			$relation = $this->User->Friend->query($query);
+			$relation_status = null;
+			if(count($relation)>0){
+				$relation_status = $relation[0]['uu']['status'];
+			}
+			
+			//$query = 'select * from users as u, users_users as uu where u.id=uu.user_id_2 and uu.user_id_1="'.$pid.'" and status="1"';
+			//$friends = $this->User->Friend->query($query);
+			$this->set(array('user_info'=>$user_info, 'friends'=>$friends, 'relation_status'=>$relation_status));
+		}
+	}
+	
+	function ajax_get_user_friend(){
+		$current_user = $this->Auth->user();
+		
+		if($this->RequestHandler->isAjax()) {
+			$keyword = $_POST['keyword'];
+			if($keyword != null){
+				$query = 'select id, firstname, secondname, profile_image from users as u, users_users as uu where u.id=uu.user_id_2 and status="1" and user_id_1='.$current_user['User']['id'].' and (firstname like "%'.$keyword.'%" or secondname like "%'.$keyword.'%")';
+				$data = $this->User->query($query);
+				//echo $data;
+				echo json_encode($data);
+			}
+		}
+		$this->autoRender = false;
+	}
+	
+	function ajax_add_as_friend(){
+		$current_user = $this->Auth->user();
+		
+		if($this->RequestHandler->isAjax()) {
+			$tg = $_POST['tg'];
+			if($tg != null){
+				$query = 'insert into users_users values("'.$current_user['User']['id'].'", "'.$tg.'", "0")';
+				$data = $this->User->query($query);
+				$query = 'insert into users_users values("'.$tg.'", "'.$current_user['User']['id'].'", "2")';
+				$data = $this->User->query($query);
+				echo $tg;
+			}
+		}
+		$this->autoRender = false;
+	}
+	
+	function signup(){
+		if(!empty($this->data)){			
+			$this->User->create();						
+			if($this->User->save($this->data)){
+				$this_id = $this->User->id;
+				$ext = substr($this->data['File']['Photo']['name'], strrpos($this->data['File']['Photo']['name'], '.') + 1);
+				mkdir('img/users/user_id_'.$this_id.'_photos');
+				
+				if($this->data['File']['Photo']['name'] != ''){							
+					$pimg_name = $this_id.'_profile.'.$ext;
+					$profile_image = 'users/user_id_'.$this_id.'_photos/'.$pimg_name;						
+					
+					$this->Common->imageUpload('img/users/user_id_'.$this_id.'_photos/', $pimg_name, $ext, $this->data['File']['Photo']);
+					
+				}
+				else{
+					$pimg_name = 'default.png';
+					$profile_image = 'users/'.$pimg_name;
+				}
+				$this->User->updateAll(
+					array(
+						'User.profile_image' => '"'.$profile_image.'"'
+					),
+					array(
+						'User.id' => $this_id
+					)
+				);
+				$this->Session->setFlash('Your account is created.');
+				$this->redirect(array('controller' => 'users', 'action' => 'login'));
+			}
+			else{
+				$this->data = null;
+			}			
+		}
+	}	
+	
+	function login(){	
+		$this->layout = 'login_layout';
+	}
+	function logout(){	
+		$this->Session->setFlash('Logout');
+		$this->redirect($this->Auth->logout());
+	}
+	
+	function home(){
+		$current_user = $this->Auth->user();
+		
+		$query = 'select user_id_2 from users_users where user_id_1='.$current_user['User']['id'];	
+		$data = $this->User->Whisper->VisibleTo->query($query);
+		$collection = $this->Common->singleColumnQueryResultIntoArray($data);				
+				
+		$this->User->Whisper->VisibleTo->User->recursive = 0;
+		$users = $this->User->find('all', array(
+												'fields' => array('id', 'firstname', 'secondname', 'username', 'profile_image'),
+												'conditions' => array(
+													'id' => $collection
+												)
+											)
+										);				
+		$this->set(array('users' => $users));
+	}
+	
+	
+	function friends(){
+		$current_user = $this->Auth->user();
+		
+		$query = 'select user_id_2 from users_users where user_id_1='.$current_user['User']['id'];	
+		$data = $this->User->Friend->query($query);
+		$collection = $this->Common->singleColumnQueryResultIntoArray($data);
+		
+		$this->User->recursive = 0;
+		$result = $this->User->find('all', array(
+				'conditions' => array(
+					'id' => $collection
+				)
+			)
+		);
+		$this->set('results', $result);
+	}
+	
+	function add_friend($fid=null){		
+		$data = array(
+			'UsersUser' => array(
+				'user_id_1' => $this->Auth->user('id'),
+				'user_id_2' => $fid
+			)
+		);
+		$this->User->id = $this->Auth->user('id');
+		$this->User->UsersUser->save($data);
+		$this->Session->setFlash('Success!');
+		$this->redirect(array('action' => 'home'));
+	}
+	
+	function jstest()
+	{
+	
+	}
+	
+	function original_profile($pid){
+		$user_of_interest = $this->User->find('first', array('conditions' => array('User.id' => $pid)));
+		$this->set('user_of_interest', $user_of_interest);
+		
+		$current_user = $this->Auth->user();		
+		$query = 'select user_id_2 from users_users where user_id_1='.$current_user['User']['id'];	
+		$data = $this->User->Friend->query($query);
+		$collection = $this->Common->singleColumnQueryResultIntoArray($data);				
+		
+		if($pid == $current_user['User']['id'] || in_array($pid, $collection)){
+			$this->set('already_friend_or_not_myself', true);
+		}
+		else{
+			$this->set('already_friend_or_not_myself', false);
+		}
+		
+		$query = 'select user_id_2 from users_users where user_id_1='.$pid;
+		$data = $this->User->Friend->query($query);
+		$collection = $this->Common->singleColumnQueryResultIntoArray($data);
+		
+		$this->User->recursive = 0;
+		$friends = $this->User->find('all', array(
+				'conditions' => array(
+					'id' => $collection
+				)
+			)
+		);
+		$this->set('friends', $friends);
+	}
+	
+	
+}
+?>
